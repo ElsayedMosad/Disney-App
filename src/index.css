@@ -1,0 +1,107 @@
+/* Start variables */
+:root {
+  --main-color: #fbfefd;
+  --title-color: #393939;
+  --text-color: #707070;
+  --box-color: #ffffff;
+
+  --constant-color: #069c54;
+  --constant-pro-color: #048654;
+
+  --line-height: 1.6;
+}
+.dark {
+  --main-color: #1d2521;
+  --title-color: #f1f3f2;
+  --text-color: #c7d1cc;
+  --box-color: #27302c;
+}
+/* End variables  */
+
+/* Start global rules*/
+body {
+  font-family: sans-serif;
+  background-color: #040714;
+  /* color: #f9f9f9; */
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+@media (min-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+}
+@media (max-width: 479px) {
+  body {
+    font-size: 14px;
+  }
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+input,
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  /* font-family: inherit; */
+}
+button {
+  cursor: pointer;
+}
+ul {
+  list-style-type: none;
+}
+img {
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* End global rules */
+/* Start classes */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    width: 560px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1120px;
+  }
+}
+/* End classes */
