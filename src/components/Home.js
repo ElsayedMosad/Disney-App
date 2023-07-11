@@ -35,7 +35,7 @@ const Content = styled.main`
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
-  background-color: red;
+  background-color: #040714;
 `;
 const Grouprecomments = styled.div`
   padding: 20px 0 100px;

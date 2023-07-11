@@ -25,7 +25,7 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: #040714;
   position: relative;
 `;
 const BgImg = styled.div`
