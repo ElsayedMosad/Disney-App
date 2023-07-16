@@ -7,37 +7,37 @@ const NavLinks = () => {
       <li>
         <Link to="/home">
           <img src="/assets/images/home-icon.svg" alt="HOME" />
-          <span>HOME</span>
+          <span>home</span>
         </Link>
       </li>
       <li>
         <Link to="/search">
           <img src="/assets/images/search-icon.svg" alt="SEARCH" />
-          <span>SEARCH</span>
+          <span>search</span>
         </Link>
       </li>
       <li>
         <Link to="/watch">
           <img src="/assets/images/watchlist-icon.svg" alt="WATCHLIST" />
-          <span>WATCHLIST</span>
+          <span>watchlist</span>
         </Link>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/originals">
           <img src="/assets/images/original-icon.svg" alt="ORIGINALS" />
-          <span>ORIGINALS</span>
+          <span>originals</span>
         </Link>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/movies">
           <img src="/assets/images/movie-icon.svg" alt="MOVIES" />
-          <span>MOVIES</span>
+          <span>movies</span>
         </Link>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/series">
           <img src="/assets/images/series-icon.svg" alt="SERIES" />
-          <span>SERIES</span>
+          <span>series</span>
         </Link>
       </li>
     </Menu>
@@ -67,7 +67,7 @@ const Menu = styled.ul`
       letter-spacing: 1.5px;
       display: inline-block;
       padding: 2px 0 1px 3px;
-      text-transform: uppercase;
+      text-transform: capitalize;
       position: relative;
       &::after {
         content: "";

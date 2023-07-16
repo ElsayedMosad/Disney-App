@@ -1,34 +1,23 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 export const NewToDisney = (props) => {
+  const movies = useSelector((state) => state.movies);
+  // console.log(movies);
+  // console.log(typeof movies);
+
   return (
     <Container>
       <h3>NewToDisney</h3>
       <Content>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (6).jpg"
-            alt=""
-          />
-        </Warp>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (7).jpg"
-            alt=""
-          />
-        </Warp>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (9).jpg"
-            alt=""
-          />
-        </Warp>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (8).jpg"
-            alt=""
-          />
-        </Warp>
+        {movies.length &&
+          movies
+            .filter((movie) => movie.type === "new")
+            .map((movie, i) => (
+              <Warp key={i}>
+                <img src={movie.cardImg} alt={movie.title} />
+              </Warp>
+            ))}
       </Content>
     </Container>
   );

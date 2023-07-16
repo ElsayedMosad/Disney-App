@@ -23,5 +23,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const db = getFirestore(app);
+// app.use((req, res, next) => {
+//   res.set("Cross-Origin-Opener-Policy", "same-origin");
+//   res.set("Cross-Origin-Resource-Policy", "same-origin");
+//   next();
+// });
 export { auth, provider, db };
 // const analytics = getAnalytics(app);

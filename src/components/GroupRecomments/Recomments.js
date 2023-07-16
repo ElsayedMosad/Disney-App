@@ -1,35 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 export const Recomments = (props) => {
+  const movies = useSelector((state) => state.movies);
+
   return (
     <Container>
-      {/* <h3>{props.groupname}</h3> */}
       <h3>Recomments</h3>
       <Content>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (11).jpg"
-            alt=""
-          />
-        </Warp>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (6).jpg"
-            alt=""
-          />
-        </Warp>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (7).jpg"
-            alt=""
-          />
-        </Warp>
-        <Warp>
-          <img
-            src="/assets/images/Carton/wallpaperflare.com_wallpaper (5).jpg"
-            alt=""
-          />
-        </Warp>
+        {movies.length &&
+          movies
+            .filter((movie) => movie.type === "recommend")
+            .map((movie, i) => (
+              <Warp key={i}>
+                <img src={movie.cardImg} alt={movie.title} />
+              </Warp>
+            ))}
       </Content>
     </Container>
   );

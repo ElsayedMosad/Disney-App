@@ -4,20 +4,35 @@ import NavLinks from "./NavLinks";
 import { auth, db, provider } from "../config/firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectUserName,
+  // selectUserEmail,
+  selectUserPhoto,
+  setSignOutState,
+  setUserLoginDetails,
+} from "../rtk/slices/userSlice";
+import { store } from "../rtk/store";
 
 const Header = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const usersRef = collection(db, "users");
+
+  const username = useSelector(selectUserName);
+  const userPhoto = useSelector(selectUserPhoto);
+
   const handleAuth = async () => {
     const result = await signInWithPopup(auth, provider);
-    // console.log(result);
     console.log(result.user);
+
+    // for firebase
     onSignInUser(result.user);
+    // for react redux
+    setUser(result.user);
   };
   const onSignInUser = async (data) => {
     await addDoc(usersRef, {
@@ -26,8 +41,19 @@ const Header = () => {
       userId: data?.uid,
     });
   };
+  const setUser = (user) => {
+    dispatch(
+      setUserLoginDetails({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      })
+    );
+    console.log(store);
+  };
   const SignUserOut = async () => {
     await signOut(auth);
+    dispatch(setSignOutState());
   };
 
   useEffect(() => {
@@ -44,9 +70,10 @@ const Header = () => {
     <Nav>
       <Container className="">
         <Logo>
-          <Link to="/">
-            <img src="/assets/images/logo.svg" alt="" />
-          </Link>
+          {/* <Link to=""> */}
+          <img src="/assets/images/logo.svg" alt="" />
+          00
+          {/* </Link> */}
         </Logo>
         {!user ? (
           <Signin onClick={handleAuth}>Sign In</Signin>
@@ -55,13 +82,7 @@ const Header = () => {
             <NavLinks />
             <Info>
               <Photo>
-                <img
-                  src={
-                    user?.photoURL ||
-                    "https://lh3.googleusercontent.com/a/ALm5wu2gZz_0O72LKd_Tj_gYe46wFDojkxsWcaB5wX6XQA=s96-c"
-                  }
-                  alt="UserImage"
-                />
+                <img src={user?.photoURL} alt={user?.displayName} />
               </Photo>
               <Signout onClick={SignUserOut}>Sign Out</Signout>
             </Info>
