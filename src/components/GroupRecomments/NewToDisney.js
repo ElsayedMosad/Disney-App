@@ -3,9 +3,6 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 export const NewToDisney = (props) => {
   const movies = useSelector((state) => state.movies);
-  // console.log(movies);
-  // console.log(typeof movies);
-
   return (
     <Container>
       <h3>NewToDisney</h3>

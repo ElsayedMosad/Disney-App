@@ -72,7 +72,6 @@ const Header = () => {
         <Logo>
           {/* <Link to=""> */}
           <img src="/assets/images/logo.svg" alt="" />
-          00
           {/* </Link> */}
         </Logo>
         {!user ? (
