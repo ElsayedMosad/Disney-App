@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 export const Recomments = (props) => {
   const movies = useSelector((state) => state.movies);
@@ -13,7 +14,9 @@ export const Recomments = (props) => {
             .filter((movie) => movie.type === "recommend")
             .map((movie, i) => (
               <Warp key={i}>
-                <img src={movie.cardImg} alt={movie.title} />
+                <Link to={"/details/" + movie.id}>
+                  <img src={movie.cardImg} alt={movie.title} />
+                </Link>
               </Warp>
             ))}
       </Content>
@@ -50,13 +53,10 @@ const Warp = styled.div`
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
-  /* min-height: 170px; */
   img {
     inset: 0px;
     display: block;
-    /* position: absolute; */
     object-fit: cover;
-    /* height: 100%; */
     width: 100%;
   }
   &:hover {

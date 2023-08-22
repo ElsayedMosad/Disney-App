@@ -6,21 +6,12 @@ import View from "./View";
 import { NewToDisney } from "./GroupRecomments/NewToDisney";
 import { Originals } from "./GroupRecomments/Originals";
 import { Trending } from "./GroupRecomments/Trending";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchMovies } from "../rtk/slices/movieSlice";
 const Home = () => {
   const dispatch = useDispatch();
-  // const movies = useSelector((state) => state.movies);
-  // console.log(movies);
-  // movies.length &&
-  //   movies.map((m) => {
-  //     console.log(2);
-  //     return 5;
-  //   });
-
   useEffect(() => {
     dispatch(fetchMovies());
-    // console.log(movies);
   }, [dispatch]);
   return (
     <Content>

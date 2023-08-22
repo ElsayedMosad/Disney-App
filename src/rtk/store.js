@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./slices/userSlice";
 import moviesSlice from "./slices/movieSlice";
 export const store = configureStore({
@@ -6,7 +6,4 @@ export const store = configureStore({
     user: userSlice,
     movies: moviesSlice,
   },
-  // middleware: getDefaultMiddleware({
-  //   serializableCheck: false,
-  // }),
 });

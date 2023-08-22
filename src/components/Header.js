@@ -1,33 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NavLinks from "./NavLinks";
 import { auth, db, provider } from "../config/firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectUserName,
-  // selectUserEmail,
-  selectUserPhoto,
-  setSignOutState,
-  setUserLoginDetails,
-} from "../rtk/slices/userSlice";
-import { store } from "../rtk/store";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setSignOutState, setUserLoginDetails } from "../rtk/slices/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const usersRef = collection(db, "users");
-
-  const username = useSelector(selectUserName);
-  const userPhoto = useSelector(selectUserPhoto);
-
+  let location = useLocation();
+  let [navBg, setNavBg] = useState(false);
+  useEffect(() => {
+    if (location.pathname.slice(1, 8) === "details") {
+      setNavBg(true);
+    } else {
+      setNavBg(false);
+    }
+  }, [location]);
   const handleAuth = async () => {
     const result = await signInWithPopup(auth, provider);
-    console.log(result.user);
+    // console.log(result.user);
 
     // for firebase
     onSignInUser(result.user);
@@ -49,7 +47,6 @@ const Header = () => {
         photo: user.photoURL,
       })
     );
-    console.log(store);
   };
   const SignUserOut = async () => {
     await signOut(auth);
@@ -67,12 +64,10 @@ const Header = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   return (
-    <Nav>
+    <Nav className={navBg ? "nav-transparent" : ""}>
       <Container className="">
         <Logo>
-          {/* <Link to=""> */}
           <img src="/assets/images/logo.svg" alt="" />
-          {/* </Link> */}
         </Logo>
         {!user ? (
           <Signin onClick={handleAuth}>Sign In</Signin>
@@ -101,6 +96,9 @@ const Nav = styled.nav`
   z-index: 100;
   background-color: #040714f0;
   color: #fff;
+  &.nav-transparent {
+    background-color: transparent;
+  }
 `;
 const Container = styled.div`
   height: 100%;
@@ -151,7 +149,6 @@ const Photo = styled.div`
     display: block;
     border-radius: 4px;
     z-index: 20;
-    /* border-radius: 50%; */
   }
 `;
 

@@ -29,12 +29,14 @@ const ImgSlider = () => {
         </Slide>
         <Slide>
           <a>
-            <img src="/assets/images/slider-scale.jpg" />
+            {/* <img src="/assets/images/slider-scale.jpg" /> */}
+            <img src="/assets/images/slider-badag.jpg" />
           </a>
         </Slide>
         <Slide>
           <a>
-            <img src="/assets/images/slider-scales.jpg" />
+            {/* <img src="/assets/images/slider-scales.jpg" /> */}
+            <img src="/assets/images/slider-badging.jpg" />
           </a>
         </Slide>
       </Carousel>
@@ -91,16 +93,15 @@ const Slide = styled.div`
   & > a {
     border: 3.5px solid #3e404c;
     transition: 0.3s;
-    /* cursor: pointer; */
     box-shadow: 4px 4px 7px #000000ad;
     border-radius: 12px;
     overflow: hidden;
     @media (min-width: 560px) {
       width: calc(100% - 15px) !important;
     }
-    /* &:hover {
-      border-color: #ddd;
-    } */
+    &:hover {
+      border-color: #7f7f81;
+    }
   }
   & > a,
   & img {
